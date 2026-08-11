@@ -60,23 +60,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </li>
         </ul>
     </nav>
-
-    <h2>Register</h2>
-    <?php if($error): ?>
-        <p style="color: red;">
-            <?php echo $error; ?>
-        </p>
-    <?php endif; ?>
     
 <div class="container">
     <div class="form-container">
         <form method="POST" action="">
             <h2>Create your Account</h2>
-
-            <!-- Error message placeholder -->
+            
+            <?php if($error): ?>
             <p style="color:red">
-                <!-- Error message goes here -->
+                <?php echo $error; ?>
             </p>
+            <?php endif; ?>
 
             <label for="username">Username:</label>
             <input placeholder="Enter your username" type="text" name="username" required>
@@ -97,5 +91,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
 </body>
 </html>
+<?php
+mysqli_close($conn);
+?>
 
 <!-- Include Footer -->
