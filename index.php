@@ -1,35 +1,13 @@
 <?php
-include("db.php");
-session_start();
+include("partials/header.php");
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login app with SQL and PHP</title>
-</head>
-<body>
-    <h2>Welcome to the home page</h2>
-    <P>
-        <a href="register.php">Register</a>
-    </P>
+<h2>Welcome to the home page</h2>
 
-    <?php if(isset($_SESSION["logged_in"]) && $_SESSION["logged_in"] === true): ?>
-        <p>
-            <a href="admin.php">Admin</a>
-        </p>
+<?php 
+include("partials/navigation.php");
+?>
 
-        <p>
-            <a href="logout.php">Logout</a>
-        </p>
-    <?php else: ?>
-        <p>
-            <a href="login.php">Login</a>
-        </p>
-
-    <?php endif; ?>
-
-</body>
-</html>
+<?php
+    include("partials/footer.php");
+?>
