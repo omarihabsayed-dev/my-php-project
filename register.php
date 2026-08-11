@@ -14,11 +14,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (mysqli_num_rows($result) > 0) {
             $error = "Username already exists";
         } else {
-            $sql = "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$password')";
+            $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+            $sql = "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$passwordHash')";
             if (mysqli_query($conn, $sql)) {
                 echo "DATA INSERTED";
             } else {
-                echo "ERROR INSERTING DATA" . mysqli_error($conn);
+                $error = "ERROR INSERTING DATA" . mysqli_error($conn);
             }
         }
     }
