@@ -1,6 +1,6 @@
 <?php
-include("db.php");
-session_start();
+include("partials/header.php");
+include("partials/navigation.php");
 if (isset($_SESSION["logged_in"]) && $_SESSION["logged_in" ] == true) {
     header("Location: admin.php");
     exit();
@@ -28,18 +28,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-<!-- Include Header -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-
-<body class="register">
-
 <div class="container">
     <div class="form-container">
         <form method="POST" action="">
@@ -62,10 +50,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 </div>
     
-</body>
-</html>
+<?php
+include("footer.php");
+?>
+
 <?php
 mysqli_close($conn);
 ?>
-
-<!-- Include Footer -->

@@ -1,18 +1,24 @@
-    <P>
-        <a href="register.php">Register</a>
-    </P>
-
+ <nav>
+    <ul>
+        <li>
+            <a class="<?php echo setActiveClass("index.php")?>" href="index.php">Home</a>
+        </li>
     <?php if(isset($_SESSION["logged_in"]) && $_SESSION["logged_in"] === true): ?>
-        <p>
-            <a href="admin.php">Admin</a>
-        </p>
+        <li>
+            <a class="<?php echo setActiveClass("admin.php")?>" href="admin.php">Admin</a>
+        </li>
 
-        <p>
+        <li>
             <a href="logout.php">Logout</a>
-        </p>
+        </li>
     <?php else: ?>
-        <p>
-            <a href="login.php">Login</a>
-        </p>
+        <li>
+            <a class="<?php echo setActiveClass("login.php")?>" href="login.php">Login</a>
+        </li>
 
+        <li>
+            <a class="<?php echo setActiveClass("register.php")?>" href="register.php">Register</a>
+        </li>
     <?php endif; ?>
+    </ul>
+ </nav> 

@@ -1,0 +1,127 @@
+nav {
+  display: flex;
+  justify-content: center;
+  background-color: #333;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+
+body {
+  margin: 0;
+}
+
+body.index {
+  background-color: aliceblue;
+}
+
+body.login {
+  background-color: salmon;
+}
+
+body.login,
+body.register .form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+}
+
+body.login .form-container h2,
+body.register .form-container h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+  color:;
+}
+
+body.register form,
+body.login form {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+body.register form input[type="text"],
+body.register form input[type="email"],
+body.register form input[type="password"],
+body.login form input[type="text"],
+body.login form input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+body.register form input[type="submit"],
+body.login form input[type="submit"] {
+  width: 100%;
+  padding: 14px;
+  color: white;
+  background-color: #333;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+body.register form input[type="submit"]:hover,
+body.login form input[type="submit"]:hover {
+  background-color: #ff6b6b;
+}
+
+body.register form label,
+body.login form label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #555;
+}
+
+body.register {
+  background-color: seashell;
+}
+
+.container {
+  padding: 10px;
+}
+
+nav ul {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  margin: 0 10px;
+}
+
+nav ul li a {
+  display: block;
+  color: white;
+  font-family: sans-serif, Arial;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 14px 20px;
+  transition: 0.3s ease;
+}
+
+nav ul li a:hover {
+  background-color: #575757;
+}
+
+nav ul li a.active {
+  background-color: #575757 !important;
+  color: yellow !important;
+}

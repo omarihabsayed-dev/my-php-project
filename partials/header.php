@@ -1,5 +1,6 @@
 <?php
 include("db.php");
+include("functions.php");
 session_start();
 ?>
 
@@ -9,5 +10,6 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login app with SQL and PHP</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="<?php echo getClassPage() ?>">
