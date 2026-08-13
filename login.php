@@ -1,9 +1,8 @@
 <?php
 include("partials/header.php");
 include("partials/navigation.php");
-if (isset($_SESSION["logged_in"]) && $_SESSION["logged_in" ] == true) {
-    header("Location: admin.php");
-    exit();
+if (isUserLoggedIn()) {
+    redirect("admin.php");
 }
 $error = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -17,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if(password_verify($password, $user["password"])) {
             $_SESSION["username"] = $user["username"];
             $_SESSION["logged_in"] = true;
-            header("Location: admin.php");
+            redirect("admin.php");
             exit();
         } else {
             $error = "Invalid username or password";

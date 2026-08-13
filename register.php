@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (mysqli_query($conn, $sql)) {
                 $_SESSION["logged_in"] = true;
                 $_SESSION["username"] = $username;
-                header("Location: admin.php");
+                redirect("admin.php");
             } else {
                 $error = "ERROR INSERTING DATA" . mysqli_error($conn);
             }
