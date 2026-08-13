@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("Location: admin.php");
             exit();
         } else {
-            $error = "Invalid password";
+            $error = "Invalid username or password";
         }
     } else {
         $error = "User not found";

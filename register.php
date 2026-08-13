@@ -18,7 +18,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $passwordHash = password_hash($password, PASSWORD_DEFAULT);
             $sql = "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$passwordHash')";
             if (mysqli_query($conn, $sql)) {
-                echo "DATA INSERTED";
+                $_SESSION["logged_in"] = true;
+                $_SESSION["username"] = $username;
+                header("Location: admin.php");
             } else {
                 $error = "ERROR INSERTING DATA" . mysqli_error($conn);
             }
@@ -39,10 +41,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <?php endif; ?>
 
             <label for="username">Username:</label>
-            <input placeholder="Enter your username" type="text" name="username" required>
+            <input value="<?php echo isset($username) ? $username : "";?>" placeholder="Enter your username" type="text" name="username" required>
 
             <label for="email">Email:</label>
-            <input placeholder="Enter your email" type="email" name="email" required>
+            <input value="<?php echo isset($email) ? $email : "";?>" placeholder="Enter your email" type="email" name="email" required>
 
             <label for="password">Password:</label>
             <input placeholder="Enter your password" type="password" name="password" required>
