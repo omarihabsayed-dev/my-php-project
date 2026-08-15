@@ -8,8 +8,10 @@ include("partials/navigation.php");
             <h2>Welcome to our PHP login APP</h2>
             <p>Securly login and manage your account with us</p>
             <div class="hero-buttons">
+                <?php if(!isUserLoggedIn()): ?>
                 <a class="btn" href="login.php">Login</a>
                 <a class="btn" href="register.php">Register</a>
+                <?php endif; ?>
             </div>
         </div>
     </div>

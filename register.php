@@ -1,6 +1,9 @@
 <?php
 include("partials/header.php");
 include("partials/navigation.php");
+if (isUserLoggedIn()) {
+    redirect("admin.php");
+}
 $error = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = mysqli_real_escape_string($conn, $_POST["username"]);
@@ -13,9 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (user_exists($conn, $username)) {
             $error = "Username already exists";
         } else {
-            $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-            $sql = "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$passwordHash')";
-            if (mysqli_query($conn, $sql)) {
+            if (check_query(create_user($conn, $username, $email, $password))) {
                 $_SESSION["logged_in"] = true;
                 $_SESSION["username"] = $username;
                 redirect("admin.php");

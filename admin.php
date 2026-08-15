@@ -12,17 +12,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $user_id = mysqli_real_escape_string($conn, $_POST["user_id"]);
         $email = mysqli_real_escape_string($conn, $_POST["email"]);
         $username = mysqli_real_escape_string($conn, $_POST["username"]);
-        $result = mysqli_query($conn,"UPDATE users SET email='$email', username='$username' WHERE id='$user_id'");
-        $query_status = check_query($result);
+        $query_status = check_query(update_user($conn, $user_id, $username, $email));
         if($query_status === true){
             $_SESSION["message"] = "User updated successfully to";
             $_SESSION["msg_type"] = "success";
              redirect("admin.php");
         }
     } elseif(isset($_POST["delete_user"])) {
-        $user_id = mysqli_real_escape_string($conn, $_POST["user_id"]);
-        $result = mysqli_query($conn,"DELETE FROM users WHERE id='$user_id'");
-        $query_status = check_query($result);
+        $query_status = check_query(delete_user($conn, $user_id));
         if($query_status === true){
             $_SESSION["message"] = "User deleted successfully";
             $_SESSION["msg_type"] = "success";
