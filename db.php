@@ -15,4 +15,13 @@ $conn = mysqli_connect($host, $user, $pass, $name);
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
+
+function check_query($result) {
+    global $conn;
+    if(!$result) {
+        return "Error" . mysqli_error($conn);
+    }
+    return true;
+}
+
 ?> 

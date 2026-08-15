@@ -11,8 +11,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(isset($_POST["edit_user"])) {
         $user_id = mysqli_real_escape_string($conn, $_POST["user_id"]);
         $email = mysqli_real_escape_string($conn, $_POST["email"]);
-        mysqli_query($conn,"UPDATE users SET email='$email' WHERE id='$user_id'");
-        redirect("admin.php");
+        $result = mysqli_query($conn,"UPDATE users SET email='$email' WHERE id='$user_id'");
+        if(check_query($result)){
+             redirect("admin.php");
+        }
+    } elseif(isset($_POST["delete_user"])) {
+        $user_id = mysqli_real_escape_string($conn, $_POST["user_id"]);
+        $result = mysqli_query($conn,"DELETE FROM users WHERE id='$user_id'");
+        if(check_query($result)){
+            redirect("admin.php");
+        }
     }
 }
 ?>
