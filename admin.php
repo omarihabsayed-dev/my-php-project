@@ -11,14 +11,21 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(isset($_POST["edit_user"])) {
         $user_id = mysqli_real_escape_string($conn, $_POST["user_id"]);
         $email = mysqli_real_escape_string($conn, $_POST["email"]);
-        $result = mysqli_query($conn,"UPDATE users SET email='$email' WHERE id='$user_id'");
-        if(check_query($result)){
+        $username = mysqli_real_escape_string($conn, $_POST["username"]);
+        $result = mysqli_query($conn,"UPDATE users SET email='$email', username='$username' WHERE id='$user_id'");
+        $query_status = check_query($result);
+        if($query_status === true){
+            $_SESSION["message"] = "User updated successfully to";
+            $_SESSION["msg_type"] = "success";
              redirect("admin.php");
         }
     } elseif(isset($_POST["delete_user"])) {
         $user_id = mysqli_real_escape_string($conn, $_POST["user_id"]);
         $result = mysqli_query($conn,"DELETE FROM users WHERE id='$user_id'");
-        if(check_query($result)){
+        $query_status = check_query($result);
+        if($query_status === true){
+            $_SESSION["message"] = "User deleted successfully";
+            $_SESSION["msg_type"] = "success";
             redirect("admin.php");
         }
     }
@@ -28,6 +35,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <h1>Manage Users</h1>
 
 <div class="container">
+    <?php if(isset($_SESSION["message"])): ?>
+        <div class="notification <?php echo $_SESSION["msg_type"]; ?>">
+            <?php
+            echo $_SESSION["message"];
+            unset($_SESSION["message"]);
+            unset($_SESSION["msg_type"]);
+            ?>
+        </div>
+        <?php endif; ?>
     <table class="user-table">
         <thead>
         <tr>
@@ -49,6 +65,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <form method="POST" style="display:inline-block;">
                     <input type="hidden" name="user_id" value="<?php echo $row["id"]; ?>">
                     <input type="email" name="email" value="<?php echo $row["email"]; ?>" required>
+                    <input type="text" name="username" value="<?php echo $row["username"]; ?>" required>
                     <button class="edit" type="submit" name="edit_user">Edit</button>
                 </form>
                 <form method="POST" style="display:inline-block;" onsubmit="return confirm('Are you sure you want to delete this user?');">
